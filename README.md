@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 export default function App() {
   const [text, setText] = useState('');
   const [designText, setDesignText] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.logo}>[Logo Platzhalter]</Text>
-
+    <View style={styles.container}>
       <Text style={styles.title}>T-Shirt Designer</Text>
 
       <TextInput
@@ -20,72 +16,49 @@ export default function App() {
         onChangeText={setText}
       />
 
-      <Button title="Text hinzufügen" onPress={() => setDesignText(text)} />
+      <Button title="Text anzeigen" onPress={() => setDesignText(text)} />
 
-      <View style={styles.shirtArea}>
-        <Image source={require('./shirt.png')} style={styles.shirtImage} />
-        <Text style={styles.designText}>{designText}</Text>
+      <View style={styles.shirtPreview}>
+        <Text style={styles.shirtText}>{designText}</Text>
       </View>
-
-      <TouchableOpacity style={styles.saveButton}>
-        <Text style={styles.saveButtonText}>Design speichern</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#e6f2ff',
     alignItems: 'center',
-    backgroundColor: '#e6f2ff', // hellblau
+    justifyContent: 'center',
     padding: 20,
   },
-  logo: {
-    fontSize: 18,
-    marginBottom: 10,
-    color: '#4b0082', // lila
-  },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#003366', // dunkelblau
+    fontSize: 28,
+    color: '#4b0082',
     marginBottom: 20,
   },
   input: {
-    borderColor: '#90ee90', // hellgrün
     borderWidth: 1,
+    borderColor: '#90ee90',
     padding: 10,
     width: '100%',
-    marginBottom: 10,
+    marginBottom: 20,
+    borderRadius: 8,
   },
-  shirtArea: {
-    marginTop: 20,
-    width: '100%',
-    height: 300,
+  shirtPreview: {
+    marginTop: 40,
+    width: 200,
+    height: 200,
+    backgroundColor: '#ffffff',
+    borderWidth: 2,
+    borderColor: '#003366',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
   },
-  shirtImage: {
-    width: 250,
-    height: 250,
-    resizeMode: 'contain',
-  },
-  designText: {
-    position: 'absolute',
+  shirtText: {
     fontSize: 20,
-    color: '#4b0082', // lila
-    fontWeight: 'bold',
-  },
-  saveButton: {
-    marginTop: 20,
-    backgroundColor: '#4b0082',
-    padding: 10,
-    borderRadius: 10,
-  },
-  saveButtonText: {
-    color: '#fff',
+    color: '#003366',
     fontWeight: 'bold',
   },
 });
